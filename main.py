@@ -5,11 +5,12 @@ Game of life implementation in python
 """
 
 import random
+import time
 
 board = []
 
 
-def initboard(board: list, rows, columns):
+def initboard(board, rows, columns):
     for i in range(0, rows):
         board.append([])
 
@@ -18,7 +19,7 @@ def initboard(board: list, rows, columns):
             i.append(round(random.random()))
 
 
-def printboard(board: list):
+def printboard(board):
     for x in board:
         string = ""
         for y in x:
@@ -29,8 +30,8 @@ def printboard(board: list):
         print(string)
 
 
-def nextboard(board: list):
-    nextgeneration = board
+def nextboard(board):
+    nextgeneration = board.copy()
     
     # Calculate amount of neighbors
     for i in range(0, len(nextgeneration)-1):
@@ -42,7 +43,22 @@ def nextboard(board: list):
             for neighbor in neighbors:
                 if neighbor == 1:
                     aliveneighbors += 1
+            if nextgeneration[i][j] == 1:
+                if (aliveneighbors < 2) or (aliveneighbors > 3):
+                    nextgeneration[i][j] = 0
+            else:
+                if aliveneighbors == 3:
+                    nextgeneration[i][j] = 1
 
-    print(aliveneighbors)
+    return nextgeneration
 
-initboard(board, 20, 20)
+initboard(board, 5, 5)
+
+while True:
+    time.sleep(2)
+
+    nextgen = nextboard(board)
+
+    print("---New Gen---")
+
+    printboard(nextgen)
