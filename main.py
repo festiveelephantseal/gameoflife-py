@@ -6,6 +6,7 @@ Game of life implementation in python
 
 import random
 import time
+import argparse
 
 
 def initboard(rows, columns):
@@ -26,7 +27,7 @@ def printboard(board):
             if y == 1:
                 string += "X"
             else:
-                string += "  "
+                string += " "
         print(string)
 
 
@@ -54,13 +55,22 @@ def nextboard(board):
     return nextgeneration
 
 
-board = initboard(100, 100)
+def main():
+    parser = argparse.ArgumentParser(description="Conways Game of Life")
+    parser.add_argument("--rows", dest="rows", required=True)
+    parser.add_argument("--columns", dest="cols", required=True)
+    args = parser.parse_args()
 
-while True:
-    time.sleep(1)
+    board = initboard(int(args.rows), int(args.cols))
 
-    nextgen = nextboard(board)
+    while True:
+        time.sleep(1)
 
-    print("---New Gen---")
+        nextgen = nextboard(board)
 
-    printboard(nextgen)
+        print("---New Gen---")
+
+        printboard(nextgen)
+
+if __name__ == '__main__':
+    main()
