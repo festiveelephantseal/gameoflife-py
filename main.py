@@ -29,10 +29,20 @@ def printboard(board: list):
         print(string)
 
 
-def nextboard(board: list, x, y):
-    pass
+def nextboard(board: list):
+    nextgeneration = board
+    
+    # Calculate amount of neighbors
+    for i in range(0, len(nextgeneration)-1):
+        for j in range(0, i):
+            neighbors = [nextgeneration[i-1][j-1], nextgeneration[i-1][j], nextgeneration[i-1][j+1], nextgeneration[i][j-1], nextgeneration[i][j+1], nextgeneration[i+1][j-1], nextgeneration[i+1][j], nextgeneration[i+1][j+1]]
 
+            aliveneighbors = 0
 
-initboard(board, 10, 10)
+            for neighbor in neighbors:
+                if neighbor == 1:
+                    aliveneighbors += 1
 
-printboard(board)
+    print(aliveneighbors)
+
+initboard(board, 20, 20)
