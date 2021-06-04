@@ -7,16 +7,16 @@ Game of life implementation in python
 import random
 import time
 
-board = []
 
-
-def initboard(board, rows, columns):
+def initboard(rows, columns):
+    board = []
     for i in range(0, rows):
         board.append([])
 
     for i in board:
         for _ in range(0, columns):
             i.append(round(random.random()))
+    return board
 
 
 def printboard(board):
@@ -26,17 +26,18 @@ def printboard(board):
             if y == 1:
                 string += "X"
             else:
-                string += " "
+                string += "  "
         print(string)
 
 
 def nextboard(board):
     nextgeneration = board.copy()
-    
+
     # Calculate amount of neighbors
     for i in range(0, len(nextgeneration)-1):
         for j in range(0, i):
-            neighbors = [nextgeneration[i-1][j-1], nextgeneration[i-1][j], nextgeneration[i-1][j+1], nextgeneration[i][j-1], nextgeneration[i][j+1], nextgeneration[i+1][j-1], nextgeneration[i+1][j], nextgeneration[i+1][j+1]]
+            neighbors = [nextgeneration[i-1][j-1], nextgeneration[i-1][j], nextgeneration[i-1][j+1], nextgeneration[i]
+                         [j-1], nextgeneration[i][j+1], nextgeneration[i+1][j-1], nextgeneration[i+1][j], nextgeneration[i+1][j+1]]
 
             aliveneighbors = 0
 
@@ -52,10 +53,11 @@ def nextboard(board):
 
     return nextgeneration
 
-initboard(board, 5, 5)
+
+board = initboard(100, 100)
 
 while True:
-    time.sleep(2)
+    time.sleep(1)
 
     nextgen = nextboard(board)
 
