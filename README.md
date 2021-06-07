@@ -4,7 +4,7 @@ python implementation of game of life
 
 # Installing
 
-As long as you have bash installed and are on linux the install script should work
+As long as you have `bash` and `curl` installed and are on Linux the install script should work
 
 ```bash
 $ curl https://raw.githubusercontent.com/nerdthatnoonelikes/gameoflife-py/master/install.sh | bash
