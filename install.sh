@@ -1,7 +1,6 @@
-cd /usr/bin
-wget https://raw.githubusercontent.com/nerdthatnoonelikes/gameoflife-py/master/main.py
-sudo mv main.py gameoflife
-sudo chmod +x ./gameoflife
-sudo chown $USER ./gameoflife
+#!/usr/bin/sh
 
-echo "Installed successfully"
+sudo curl https://raw.githubusercontent.com/nerdthatnoonelikes/gameoflife-py/master/main.py -o /usr/bin/gameoflife
+sudo chmod a+rx /usr/bin/gameoflife
+
+echo "Installed Successfully"
